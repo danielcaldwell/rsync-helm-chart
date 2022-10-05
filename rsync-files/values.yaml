@@ -1,0 +1,5 @@
+REMOTE_RSYNC_IP: 127.0.0.1
+SSH_USER: whatever_ssh_user_whos_key_is_in_secrets
+BANDWIDTH_LIMIT_KBS: 2000
+SOURCE_DIRECTORY: /where/my/files/are/in/cluster/a/volume/share/
+DESTINATION_DIRECTORY: /where/my/files/are/in/cluster/b/volume/share/

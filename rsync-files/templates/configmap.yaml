@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rsync-files-config
+data:
+  REMOTE_RSYNC_IP: {{$.Values.REMOTE_RSYNC_IP | quote}}
+  BANDWIDTH_LIMIT_KBS: {{$.Values.BANDWIDTH_LIMIT_KBS | quote}}
+  SOURCE_DIRECTORY: {{$.Values.SOURCE_DIRECTORY | quote}}
+  DESTINATION_DIRECTORY: {{$.Values.DESTINATION_DIRECTORY | quote}}
+  SSH_USER: {{$.Values.SSH_USER | quote}}

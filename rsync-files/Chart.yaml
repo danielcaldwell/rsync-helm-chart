@@ -1,0 +1,5 @@
+apiVersion: v2
+name: rsync-files
+description: A Helm chart for syncing files from the colo to gke
+version: 0.1.0
+appVersion: "1.0"

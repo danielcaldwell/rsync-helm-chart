@@ -1,0 +1,39 @@
+# this was copied from the statics-nginx to load the files.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rsync-files
+spec:
+  selector:
+    matchLabels:
+      component: rsync-files
+  template:
+    metadata:
+      labels:
+        component: rsync-files
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: rsync-files
+          image: instrumentisto/rsync-ssh
+          command: ["sleep", "infinity"]
+          envFrom:
+            - configMapRef:
+                name: rsync-files-config
+            - secretRef:
+                name: rsync-secret
+          volumeMounts:
+            - mountPath: {{$.Values.SOURCE_DIRECTORY | quote}}
+              name: source_mount
+            - name: ssh-key
+              mountPath: "/root/.ssh"
+              readOnly: true
+      volumes:
+        - name: production-filestore
+          persistentVolumeClaim:
+            claimName: production-filestore
+        - name: ssh-key
+          secret:
+            secretName: rsync-secret
+            # need restricted permissions for ssh
+            defaultMode: 0400
